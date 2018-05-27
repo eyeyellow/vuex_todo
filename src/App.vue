@@ -9,11 +9,24 @@
         autofocus="off"
         @keyup.enter="addTodo"
       >
+        <div id="filters">
+          <div
+            v-for="(val, filter) in filters"
+            :class="{ selected: visibility === filter }"
+            @click="visibility = filter"
+          >
+            {{ filter }}
+          </div>
+        </div>
       <ul
         v-show="todos.length"
         id="todos"
       >
-        <Todo v-for="(todo, index) in filteredTodos" :key="index" :todo="todo"></Todo>
+        <Todo
+          v-for="(todo, index) in filteredTodos"
+          :key="index"
+          :todo="todo"
+        ></Todo>
       </ul>
     </div>
   </div>
@@ -25,8 +38,8 @@ import Todo from './components/Todo.vue';
 
 const filters = {
   all: todos => todos,
-  active: todos => todos.filter(todo => !todo.done),
-  completed: todos => todos.filter(todo => todo.done)
+  active: todos => todos.filter(todo => !todo.completed),
+  completed: todos => todos.filter(todo => todo.completed)
 }
 
 export default {
@@ -38,7 +51,7 @@ export default {
   data () {
     return {
       visibility: 'all',
-      filters: filters
+      filters
     }
   },
   computed: {
@@ -46,7 +59,7 @@ export default {
       return this.$store.state.todos;
     },
     filteredTodos () {
-      return filters[this.visibility](this.todos)
+      return filters[this.visibility](this.todos);
     }
   },
   methods: {
@@ -79,7 +92,20 @@ export default {
   border-bottom: 2px dotted black;
   font-size: 28px;
 }
+#filters {
+  min-height: 30px;
+  font-size: 28px;
+  font-family: Helvetica, sans-serif;
+  margin: 20px;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#filters .selected {
+  text-decoration: underline;
+}
 #todos {
-  margin-top: 40px;
+  margin-top: 10px;
 }
 </style>

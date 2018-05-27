@@ -28,8 +28,11 @@ export default {
 
 <style>
 .todo {
-  font-size: 24px;
+  font-size: 30px;
   font-family: Helvetica, sans-serif;
+  padding: 5px;
+  list-style-type: none;
+  user-select: none;
 }
 .todo.completed {
   text-decoration: line-through;
