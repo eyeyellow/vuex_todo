@@ -9,25 +9,27 @@
         autofocus="off"
         @keyup.enter="addTodo"
       >
-        <div id="filters">
-          <div
-            v-for="(val, filter) in filters"
-            :class="{ selected: visibility === filter }"
-            @click="visibility = filter"
-          >
-            {{ filter }}
-          </div>
+      <div id="display-grid">
+        <div
+          v-for="(val, filter) in filters"
+          :key="filter"
+          :class="{ filters, selected: visibility === filter }"
+          @click="visibility = filter"
+        >
+          {{ filter }}
         </div>
-      <ul
-        v-show="todos.length"
-        id="todos"
-      >
-        <Todo
-          v-for="(todo, index) in filteredTodos"
-          :key="index"
-          :todo="todo"
-        ></Todo>
-      </ul>
+        <div
+          id="todos"
+          v-show="todos.length"
+          :class="visibility"
+        >
+          <Todo
+            v-for="(todo, index) in filteredTodos"
+            :key="index"
+            :todo="todo"
+          ></Todo>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -92,20 +94,34 @@ export default {
   border-bottom: 2px dotted black;
   font-size: 28px;
 }
-#filters {
+#display-grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 25% auto;
+}
+.filters {
   min-height: 30px;
   font-size: 28px;
   font-family: Helvetica, sans-serif;
   margin: 20px;
   user-select: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 }
-#filters .selected {
+.filters.selected {
   text-decoration: underline;
 }
 #todos {
   margin-top: 10px;
+}
+#todos.all {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+#todos.active {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+#todos.completed {
+  grid-column-start: 3;
+  grid-column-end: 4;
 }
 </style>

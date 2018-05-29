@@ -1,10 +1,10 @@
 <template>
-  <li
+  <div
     class="todo"
     :class="{ completed: todo.completed }"
     @click="toggleTodo"
     v-text="todo.text"
-  ></li>
+  ></div>
 </template>
 
 <script>
