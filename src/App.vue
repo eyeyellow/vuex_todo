@@ -96,7 +96,7 @@ export default {
 }
 #display-grid {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 33.3% 33.3% 33.3%;
   grid-template-rows: 25% auto;
 }
 .filters {

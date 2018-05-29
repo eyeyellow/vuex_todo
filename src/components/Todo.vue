@@ -28,9 +28,10 @@ export default {
 
 <style>
 .todo {
-  font-size: 30px;
+  font-size: 28px;
   font-family: Helvetica, sans-serif;
   padding: 5px;
+  margin: 20px;
   list-style-type: none;
   user-select: none;
 }
