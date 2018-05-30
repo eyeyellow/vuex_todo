@@ -3,6 +3,7 @@
     class="todo"
     :class="{ completed: todo.completed }"
     @click="toggleTodo"
+    @dblclick="deleteTodo"
     v-text="todo.text"
   ></div>
 </template>
@@ -20,7 +21,11 @@ export default {
   methods: {
     toggleTodo () {
       const { todo } = this;
-      this.$store.commit('toggleTodo', { todo })
+      this.$store.commit('toggleTodo', { todo });
+    },
+    deleteTodo () {
+      const { todo } = this;
+      this.$store.commit('deleteTodo', { todo });
     }
   }
 }

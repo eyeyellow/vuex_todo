@@ -93,6 +93,7 @@ export default {
   min-height: 30px;
   border-bottom: 2px dotted black;
   font-size: 28px;
+  outline-width: 0;
 }
 #display-grid {
   display: grid;

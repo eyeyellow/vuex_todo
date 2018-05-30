@@ -16,6 +16,10 @@ Vue.use(Vuex);
     },
     toggleTodo (state, { todo }) {
       todo.completed = !todo.completed;
+    },
+    deleteTodo (state, { todo }) {
+      const { todos } = state;
+      todos.splice(todos.indexOf(todo), 1);
     }
   }
 
