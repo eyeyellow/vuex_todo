@@ -12,7 +12,9 @@
 
 export default {
   name: 'Todo',
-  props: ['todo'],
+  props: {
+      todo: Object
+  },
   data () {
     return {
       completed: false
